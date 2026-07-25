@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="YoLab Excel Auditor">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b5a54" />
+      <stop offset="1" stop-color="#0f766e" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <g fill="none" stroke="#8fe3d8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <rect x="96" y="150" width="150" height="150" rx="16" />
+    <path d="M96 200h150M171 150v150" />
+    <path d="m146 232 20 20 34-40" />
+  </g>
+  <text x="290" y="215" font-family="Arial, 'Segoe UI', 'DejaVu Sans', sans-serif" font-size="72" font-weight="800" fill="#ffffff">YoLab Excel Auditor</text>
+  <text x="292" y="285" font-family="Arial, 'Segoe UI', 'DejaVu Sans', sans-serif" font-size="40" font-weight="600" fill="#cdeee9">Excel／CSV 資料品質健檢</text>
+  <text x="98" y="400" font-family="Arial, 'Segoe UI', 'DejaVu Sans', sans-serif" font-size="38" font-weight="700" fill="#ffffff">隱私優先 · 本機處理 · 開源</text>
+  <text x="98" y="460" font-family="Arial, 'Segoe UI', 'DejaVu Sans', sans-serif" font-size="30" fill="#cdeee9">Privacy-first data quality auditor — files never leave your device.</text>
+  <text x="98" y="545" font-family="Arial, 'Segoe UI', 'DejaVu Sans', sans-serif" font-size="26" fill="#9fded4">14 health checks · transparent 0–100 score · automation ROI · downloadable JSON</text>
+</svg>

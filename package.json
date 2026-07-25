@@ -1,0 +1,67 @@
+{
+  "name": "yolab-excel-auditor",
+  "version": "1.0.0",
+  "description": "Privacy-first Excel and CSV data quality auditor for small businesses. All processing happens locally in your browser.",
+  "type": "module",
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "license": "MIT",
+  "author": "YoLab 軟體開發工作室 (YoLab Software Studio)",
+  "homepage": "https://yakitori197.github.io/yolab-excel-auditor/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yakitori197/yolab-excel-auditor.git"
+  },
+  "keywords": [
+    "excel",
+    "csv",
+    "xlsx",
+    "data-quality",
+    "audit",
+    "privacy-first",
+    "local-processing",
+    "small-business",
+    "spreadsheet",
+    "react",
+    "typescript",
+    "vite"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "generate:samples": "node samples/generate-samples.mjs",
+    "generate:og": "node scripts/generate-og.mjs"
+  },
+  "dependencies": {
+    "papaparse": "^5.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/papaparse": "^5.3.15",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^5.2.0",
+    "eslint": "^10.8.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^15.12.0",
+    "sharp": "^0.35.3",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.65.0",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
+  }
+}

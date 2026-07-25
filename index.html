@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0f766e" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <title>YoLab Excel 資料品質健檢 — 隱私優先的 Excel／CSV 健檢工具</title>
+    <meta
+      name="description"
+      content="在瀏覽器本機分析 Excel 與 CSV 的資料品質：空白、重複、型別不一致、公式錯誤、隱藏工作表等 14 項健檢，並提供健康評分與自動化效益估算。檔案不會離開您的裝置。"
+    />
+    <meta name="author" content="YoLab 軟體開發工作室" />
+    <link rel="canonical" href="https://yakitori197.github.io/yolab-excel-auditor/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="YoLab Excel Auditor" />
+    <meta property="og:title" content="YoLab Excel 資料品質健檢 — Privacy-first data quality auditor" />
+    <meta
+      property="og:description"
+      content="隱私優先的 Excel／CSV 資料品質健檢。所有分析都在您的瀏覽器本機完成，檔案不會上傳到任何伺服器。"
+    />
+    <meta property="og:url" content="https://yakitori197.github.io/yolab-excel-auditor/" />
+    <meta property="og:image" content="https://yakitori197.github.io/yolab-excel-auditor/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="YoLab Excel 資料品質健檢 — 隱私優先、本機處理" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="YoLab Excel 資料品質健檢" />
+    <meta
+      name="twitter:description"
+      content="隱私優先的 Excel／CSV 資料品質健檢，全程在瀏覽器本機處理。"
+    />
+    <meta name="twitter:image" content="https://yakitori197.github.io/yolab-excel-auditor/og-image.png" />
+
+    <!-- Structured data: SoftwareApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "YoLab Excel Auditor",
+        "alternateName": "YoLab Excel 資料品質健檢",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Data Quality",
+        "operatingSystem": "Web browser",
+        "description": "Privacy-first Excel and CSV data quality auditor for small businesses. All files are processed locally in the browser and never uploaded.",
+        "url": "https://yakitori197.github.io/yolab-excel-auditor/",
+        "inLanguage": ["zh-Hant", "en"],
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "YoLab 軟體開發工作室",
+          "url": "https://yakitori197.github.io/YoLab/"
+        },
+        "featureList": [
+          "Local, in-browser XLSX and CSV parsing",
+          "14 data-quality health checks",
+          "Transparent 0-100 health score",
+          "Automation ROI estimator",
+          "Downloadable JSON report"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>本工具需要啟用 JavaScript 才能在您的瀏覽器本機分析檔案。This tool needs JavaScript to analyse files locally in your browser.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

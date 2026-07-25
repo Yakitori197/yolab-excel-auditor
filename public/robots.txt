@@ -1,0 +1,5 @@
+# YoLab Excel Auditor — https://yakitori197.github.io/yolab-excel-auditor/
+User-agent: *
+Allow: /
+
+Sitemap: https://yakitori197.github.io/yolab-excel-auditor/sitemap.xml

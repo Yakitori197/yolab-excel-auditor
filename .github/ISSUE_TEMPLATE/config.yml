@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全性問題 Security issue
+    url: https://github.com/yakitori197/yolab-excel-auditor/security/advisories/new
+    about: 請透過私密安全通報，不要開公開 Issue。Please report privately, not as a public issue.
+  - name: YoLab 軟體開發工作室
+    url: https://yakitori197.github.io/YoLab/
+    about: 了解更多關於 YoLab 的資訊。Learn more about YoLab.
