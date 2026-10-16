@@ -95,13 +95,13 @@ npm run screenshots            # 只重建 README 的兩張實際操作圖
 
 ## GitHub Pages 部署 · Deployment
 
-本專案為純靜態網站，透過 GitHub Actions 自動部署至 GitHub Pages：
+本專案為純靜態網站。GitHub Pages 自動部署已停用，push／合併 `main` 只執行 CI；網站保留既有發布版本。需要發布時，才由管理者手動執行：
 
 1. 於 GitHub repo 的 **Settings → Pages → Build and deployment → Source** 選擇 **GitHub Actions**。
-2. 推送到 `main` 或在 `main` 手動執行 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)，會先呼叫共用 [CI](.github/workflows/ci.yml)：安裝 → lint／型別檢查／單元測試／build／依賴稽核／瀏覽器測試。全部成功後才上傳剛剛驗證過的同一份 `dist/`，再部署。
+2. 在 Actions 頁面選擇 `Deploy to GitHub Pages`，於 `main` 手動執行 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)，會先呼叫共用 [CI](.github/workflows/ci.yml)：安裝 → lint／型別檢查／單元測試／build／依賴稽核／瀏覽器測試。全部成功後才上傳剛剛驗證過的同一份 `dist/`，再部署。
 3. 網站將發佈於 `https://<使用者>.github.io/<repo>/`。
 
-PR 只執行驗證，不部署。部署 job 透過 `needs: verify` 等待驗證成功；任一檢查失敗就不會上傳 Pages 產物或部署。非 `main` 分支的手動部署也會跳過。Pages 寫入權限僅給部署 job。
+PR 與 push／合併 `main` 只執行驗證，不部署。部署 workflow 僅保留 `workflow_dispatch`，不接受 push 觸發。部署 job 透過 `needs: verify` 等待驗證成功；任一檢查失敗就不會上傳 Pages 產物或部署。非 `main` 分支的手動部署也會跳過。Pages 寫入權限僅給部署 job。
 
 Vite 的 `base` 設為 `'./'`（相對路徑），因此網站可在任意子路徑正常運作，不需自訂網域。
 
