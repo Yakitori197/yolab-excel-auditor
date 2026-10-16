@@ -1,18 +1,23 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  workflow_call:
+    inputs:
+      upload-pages:
+        description: Upload the verified build for the caller's Pages deployment
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
 jobs:
   verify:
-    name: Lint, typecheck, test & build
+    name: Lint, typecheck, test, build & browser verification
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,3 +51,27 @@ jobs:
       # This step blocks CI on any vulnerability.
       - name: Audit (full)
         run: npm audit
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Test production build in desktop and mobile browsers
+        run: npm run test:e2e
+
+      - name: Upload browser test evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-test-evidence
+          path: |
+            playwright-report/
+            test-results/
+            docs/screenshots/*.png
+          retention-days: 7
+
+      # Upload exactly the dist/ exercised above; failed checks cannot reach this step.
+      - name: Upload verified Pages artifact
+        if: ${{ inputs.upload-pages }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist

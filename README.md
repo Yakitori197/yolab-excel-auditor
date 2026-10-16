@@ -27,7 +27,7 @@
 
 | 首頁與上傳 | 健康評分與問題明細 |
 | --- | --- |
-| `docs/screenshots/home.png` | `docs/screenshots/report.png` |
+| ![首頁與上傳](docs/screenshots/home.png) | ![健康評分與重複列問題](docs/screenshots/report.png) |
 
 ## 隱私承諾 · Privacy promise
 
@@ -54,10 +54,10 @@
 
 ## 安裝與開發 · Getting started
 
-需求：Node.js ≥ 20.19（Vite 8 需求；建議使用最新 LTS）。
+需求：Node.js 22.13 以上的 22.x 或 Node.js 24 以上；CI 使用 Node.js 22。請使用 npm 10／11；npm 12 的首次安裝需要 `npm ci --allow-remote=root`，因為 SheetJS 使用專案明確指定的官方 CDN tarball。
 
 ```bash
-npm install        # 安裝相依套件
+npm ci             # 依 lockfile 安裝相依套件
 npm run dev        # 啟動開發伺服器（http://localhost:5173）
 npm run build      # 型別檢查 + 產生 dist/ 靜態網站
 npm run preview    # 本機預覽 dist/
@@ -82,23 +82,36 @@ npm test
 
 測試涵蓋：每一類健檢規則、空檔案、損壞／不支援檔案、多工作表、評分穩定性、ROI 計算、報告不含完整原始資料，以及以真實合成示範檔跑完整流程的整合測試。
 
+瀏覽器測試使用 Playwright Chromium，在桌面與手機尺寸執行正式 build，並以 `/yolab-excel-auditor/` 子路徑驗證選檔／拖放、XLSX／CSV 分析、篩選、JSON 下載、清除／重新整理、錯誤復原、列印樣式及響應式版面：
+
+```bash
+npx playwright install chromium # 第一次安裝測試瀏覽器；Linux CI 使用 --with-deps
+npm run build
+npm run test:e2e
+npm run screenshots            # 只重建 README 的兩張實際操作圖
+```
+
+測試只使用合成資料。CI 會保留 7 天的 HTML 報告、失敗 trace 與截圖；本機輸出位於 `playwright-report/`、`test-results/`。截圖細節見 [擷取說明](docs/screenshots/README.md)。
+
 ## GitHub Pages 部署 · Deployment
 
 本專案為純靜態網站，透過 GitHub Actions 自動部署至 GitHub Pages：
 
 1. 於 GitHub repo 的 **Settings → Pages → Build and deployment → Source** 選擇 **GitHub Actions**。
-2. 推送到 `main` 分支即觸發 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)：安裝相依 → `npm run build` → 上傳 `dist/` → 部署。
+2. 推送到 `main` 或在 `main` 手動執行 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)，會先呼叫共用 [CI](.github/workflows/ci.yml)：安裝 → lint／型別檢查／單元測試／build／依賴稽核／瀏覽器測試。全部成功後才上傳剛剛驗證過的同一份 `dist/`，再部署。
 3. 網站將發佈於 `https://<使用者>.github.io/<repo>/`。
+
+PR 只執行驗證，不部署。部署 job 透過 `needs: verify` 等待驗證成功；任一檢查失敗就不會上傳 Pages 產物或部署。非 `main` 分支的手動部署也會跳過。Pages 寫入權限僅給部署 job。
 
 Vite 的 `base` 設為 `'./'`（相對路徑），因此網站可在任意子路徑正常運作，不需自訂網域。
 
 ## 技術架構 · Architecture
 
 - **框架**：React 18 + TypeScript（strict）+ Vite 8
-- **測試**：Vitest 4
+- **測試**：Vitest 4 + Playwright（桌面／手機 Chromium）
 - **XLSX 解析**：[SheetJS Community Edition](https://sheetjs.com/) `xlsx@0.20.3`（Apache-2.0，零相依）— 直接使用 **SheetJS 官方 CDN tarball**（非 npm 上已停更、含 CVE 的 `xlsx`），並以 lockfile 記錄完整性雜湊；詳見 [SECURITY.md](SECURITY.md)
 - **CSV 解析**：[PapaParse](https://www.papaparse.com/)（MIT）
-- **相依稽核**：完整 `npm audit` 與 `npm audit --omit=dev` 皆為 0 個漏洞
+- **相依稽核**：CI 執行完整 `npm audit` 與 `npm audit --omit=dev`；公告會隨時間更新，請以當次 CI 結果為準。
 - **樣式**：手寫 CSS（無大型 UI framework），支援明暗主題、響應式與列印版面
 - **圖表**：未使用圖表套件；評分以純 CSS 長條呈現
 
