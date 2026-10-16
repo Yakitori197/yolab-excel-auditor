@@ -21,6 +21,7 @@ const DEFAULT_ROI: RoiInputs = {
 
 export function App() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
+  const [analysisId, setAnalysisId] = useState(0);
   const [warning, setWarning] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -43,6 +44,7 @@ export function App() {
       const { workbook, warning: parseWarning } = await parseFile(file);
       if (!gateRef.current.isLatest(runId)) return; // superseded by a newer upload
       setAnalysis(analyzeWorkbook(workbook));
+      setAnalysisId(runId);
       setWarning(parseWarning ?? null);
     } catch (err) {
       if (!gateRef.current.isLatest(runId)) return;
@@ -133,6 +135,7 @@ export function App() {
 
             {analysis ? (
               <ResultsPanel
+                key={analysisId}
                 analysis={analysis}
                 warning={warning}
                 onClear={handleClear}

@@ -55,6 +55,7 @@ export function UploadPanel({ onFile, busy }: Props) {
       <input
         ref={inputRef}
         type="file"
+        aria-label="選擇 Excel 或 CSV 檔案"
         accept=".xlsx,.csv"
         className="visually-hidden"
         aria-describedby={hintId}

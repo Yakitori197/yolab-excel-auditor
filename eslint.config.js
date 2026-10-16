@@ -7,7 +7,7 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   {
     // Build output and generated sample binaries are not linted.
-    ignores: ['dist', 'coverage', 'samples/*.xlsx', 'samples/*.csv'],
+    ignores: ['dist', 'coverage', 'tmp', 'playwright-report', 'test-results', 'samples/*.xlsx', 'samples/*.csv'],
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
@@ -39,7 +39,7 @@ export default tseslint.config(
   },
   {
     // Node-context scripts (sample / asset generators) may use Node globals.
-    files: ['samples/**/*.mjs', 'scripts/**/*.mjs', '*.config.{js,ts}'],
+    files: ['samples/**/*.mjs', 'scripts/**/*.mjs', '*.config.{js,ts}', 'e2e/**/*.ts'],
     languageOptions: {
       globals: {
         ...globals.node,

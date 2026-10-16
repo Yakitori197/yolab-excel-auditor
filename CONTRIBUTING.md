@@ -5,7 +5,7 @@
 ## 開發流程 · Development workflow
 
 1. Fork 並 clone 專案。
-2. 安裝相依：`npm install`。
+2. 安裝相依：`npm ci`（Node.js／npm 版本需求見 README）。
 3. 建立分支：`git checkout -b feature/your-change`。
 4. 開發並確保下列檢查全部通過：
 
@@ -14,6 +14,9 @@
    npm run typecheck
    npm test
    npm run build
+   npx playwright install chromium
+   npm run test:e2e
+   npm audit
    ```
 
 5. 提交 Pull Request，並填寫 PR 範本。
